@@ -4,11 +4,11 @@ set -e
 
 # cat gfx906_64.OpenCL.2_3_0.ufdb.txt gfx906_64.OpenCL.fdb.txt | grep FP32 > bigfileFP32_FBW.csv
 
-cat ./bigfileFP32_FBW.txt | grep "\-FP32-F" > bigfileFP32_F.csv 
-cat ./bigfileFP32_FBW.txt | grep "\-FP32-B" > bigfileFP32_B.csv 
-cat ./bigfileFP32_FBW.txt | grep "\-FP32-W" > bigfileFP32_W.csv 
+cat ./bigfileFP32.csv | grep "\-FP32-F" > bigfileFP32_F.csv 
+cat ./bigfileFP32.csv | grep "\-FP32-B" > bigfileFP32_B.csv 
+cat ./bigfileFP32.csv | grep "\-FP32-W" > bigfileFP32_W.csv 
 
-python3 extractitemsLog2Norm.py bigfileFP32_FBW.csv inlog2big_FBW.csv lbllog2big_FBW.csv
+python3 extractitemsLog2Norm.py bigfileFP32.csv inlog2big_FBW.csv lbllog2big_FBW.csv
 python3 extractitemsLog2Norm.py bigfileFP32_F.csv inlog2big_F.csv lbllog2big_F.csv
 python3 extractitemsLog2Norm.py bigfileFP32_B.csv inlog2big_B.csv lbllog2big_B.csv
 python3 extractitemsLog2Norm.py bigfileFP32_W.csv inlog2big_W.csv lbllog2big_W.csv
