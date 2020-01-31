@@ -2,7 +2,7 @@
 
 set -e
 
-cat gfx906_64.OpenCL.2_3_0.ufdb.txt gfx906_64.OpenCL.fdb.txt | grep FP32 > bigfileFP32_FBW.csv
+# cat gfx906_64.OpenCL.2_3_0.ufdb.txt gfx906_64.OpenCL.fdb.txt | grep FP32 > bigfileFP32_FBW.csv
 
 cat ./bigfileFP32_FBW.txt | grep "\-FP32-F" > bigfileFP32_F.csv 
 cat ./bigfileFP32_FBW.txt | grep "\-FP32-B" > bigfileFP32_B.csv 
