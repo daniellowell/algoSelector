@@ -77,13 +77,16 @@ data = genfromtxt(strargs[1], delimiter=',') # Input data X
 labels = genfromtxt(strargs[2], delimiter=',') # Output labels Y
 
 
+
 xtrain, xtest, ytrain, ytest = train_test_split(data, labels, test_size=0.2, random_state=52)
 #Convert data into 3d tensor
 xtrain3d = np.reshape(xtrain,(xtrain.shape[0],xtrain.shape[1], 1))
 xtest3d = np.reshape(xtest,(xtest.shape[0],xtest.shape[1], 1))
 
 batches=1024
+#inittype='lecun_normal' # 'glorot_normal'
 inittype='glorot_normal'
+
 droprate=0.2
 pat=3
 label_name="solver"
@@ -93,42 +96,44 @@ def create_cnn_model(inittype):
 	model = tf.keras.Sequential()
 	model.add(tf.keras.layers.Conv1D(filters=128, kernel_size=1, input_shape=(len(feature_names), 1), kernel_initializer=inittype, name='conv1_128_1filter'))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))	
 	model.add(tf.keras.layers.ReLU())
 
 	model.add(tf.keras.layers.Conv1D(filters=256, kernel_size=3, kernel_initializer=inittype))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
 
 	model.add(tf.keras.layers.Conv1D(filters=128, kernel_size=5, kernel_initializer=inittype))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
 
 	model.add(tf.keras.layers.Conv1D(filters=64, kernel_size=1,  kernel_initializer=inittype))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
 
 	model.add(tf.keras.layers.Flatten())
 
 	model.add(tf.keras.layers.Dense(1024, kernel_initializer=inittype)) 
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
-
-	model.add(tf.keras.layers.Dropout(droprate))
 
 	model.add(tf.keras.layers.Dense(4096, kernel_initializer=inittype))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
-
-	model.add(tf.keras.layers.Dropout(droprate))
 
 	model.add(tf.keras.layers.Dense(4096, kernel_initializer=inittype))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
-
-	model.add(tf.keras.layers.Dropout(droprate))
 
 	model.add(tf.keras.layers.Dense(1024, kernel_initializer=inittype))
 	model.add(tf.keras.layers.BatchNormalization(trainable=True))
+#	model.add(tf.keras.layers.Activation("selu"))
 	model.add(tf.keras.layers.ReLU())
 
 	model.add(tf.keras.layers.Softmax())
@@ -151,7 +156,8 @@ print('\n# Evaluating on the test data.')
 results = cnnModel.evaluate(xtest3d, ytest, verbose=0, batch_size=batches)
 print('loss, acc: ', results)
 
-
+if(strargs[3]!=""):
+	cnnModel.save(strargs[3], save_format="h5", include_optimizer=False)
 
 
 
