@@ -108,10 +108,10 @@ for i in range(len(lhs)):
 	Wout=max(Wout,float(rowsplit[6]))
 	csvrow[i].append(float(rowsplit[7])) # n
 	n=max(n,float(rowsplit[7]))
-	csvrow[i].append(float(rowsplit[8].split('x')[0])) # pad H
-	padH=max(padH,float(rowsplit[8].split('x')[0]))
-	csvrow[i].append(float(rowsplit[8].split('x')[1])) # pad W
-	padW=max(padW,float(rowsplit[8].split('x')[1]))
+	csvrow[i].append(float(rowsplit[8].split('x')[0])+1) # pad H
+	padH=max(padH,float(rowsplit[8].split('x')[0])+1)
+	csvrow[i].append(float(rowsplit[8].split('x')[1])+1) # pad W
+	padW=max(padW,float(rowsplit[8].split('x')[1])+1)
 	csvrow[i].append(float(rowsplit[9].split('x')[0])) # stride H
 	strideH=max(strideH,float(rowsplit[9].split('x')[0]))
 	csvrow[i].append(float(rowsplit[9].split('x')[1])) # stride W
@@ -125,7 +125,7 @@ for i in range(len(lhs)):
 		csvrow[i].append(float(rowsplit[14].split('_')[1].strip('g'))) # group
 		group=max(group,float(rowsplit[14].split('_')[1].strip('g')))
 	else:
-		csvrow[i].append(float(0.0)) # group
+		csvrow[i].append(float(0.00001)) # group
 
 
 for i in range(len(csvrow)):
@@ -172,7 +172,7 @@ for row in rhs:
 with open(strargs[3], 'w') as lblfile:
         config_writer = csv.writer(lblfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for i in range(len(rhs)):
-                config_writer.writerow([solvers[csvlblrow[i]]])
+                config_writer.writerow([solvers[csvlblrow[i]]-1])
 
 with open('names_'+strargs[3], 'w') as nmfile:
 	config_writer = csv.writer(nmfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)

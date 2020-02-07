@@ -94,7 +94,7 @@ for i in range(len(lhs)):
 	if len(rowsplit[14].split('_')) > 1:
 		csvrow[i].append(np.log2(float(rowsplit[14].split('_')[1].strip('g')))) # group
 	else:
-		csvrow[i].append(float(0.0001)) # group
+		csvrow[i].append(float(0.00001)) # group
 
 
 with open(strargs[2], 'w') as infile:
@@ -120,7 +120,7 @@ for row in rhs:
 with open(strargs[3], 'w') as lblfile:
         config_writer = csv.writer(lblfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for i in range(len(rhs)):
-                config_writer.writerow([solvers[csvlblrow[i]]])
+                config_writer.writerow([solvers[csvlblrow[i]]-1])
 
 
 with open('names_'+strargs[3], 'w') as nmfile:

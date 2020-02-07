@@ -13,8 +13,8 @@ python3 extractitemsLog2Norm.py bigfileFP32_F.csv inlog2big_F.csv lbllog2big_F.c
 python3 extractitemsLog2Norm.py bigfileFP32_B.csv inlog2big_B.csv lbllog2big_B.csv
 python3 extractitemsLog2Norm.py bigfileFP32_W.csv inlog2big_W.csv lbllog2big_W.csv
 
-# python3 extractitemsMaxNorm.py bigfileFP32_FBW.txt inmaxnormbig_FBW.csv lblmaxnormbig_FBW.csv
-# python3 extractitemsMaxNorm.py bigfileFP32_F.txt inmaxnormbig_F.csv lblmaxnormbig_F.csv
-# python3 extractitemsMaxNorm.py bigfileFP32_B.txt inmaxnormbig_B.csv lblmaxnormbig_B.csv
-# python3 extractitemsMaxNorm.py bigfileFP32_W.txt inmaxnormbig_W.csv lblmaxnormbig_W.csv
+python3 extractitemsMaxNorm.py bigfileFP32.csv inmaxnormbig_FBW.csv lblmaxnormbig_FBW.csv
+python3 extractitemsMaxNorm.py bigfileFP32_F.csv inmaxnormbig_F.csv lblmaxnormbig_F.csv
+python3 extractitemsMaxNorm.py bigfileFP32_B.csv inmaxnormbig_B.csv lblmaxnormbig_B.csv
+python3 extractitemsMaxNorm.py bigfileFP32_W.csv inmaxnormbig_W.csv lblmaxnormbig_W.csv
 
