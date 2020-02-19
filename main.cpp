@@ -67,11 +67,11 @@ int main(int argc, char *argv[]){
 	};
 
 
-	std::vector<std::string> feature_names= { "C","Hin", "Win", "x", "y", "K", "Hout", "Wout", "n", "padH", "padW", "strideH", "strideW", "dilationH", "dilationW", "group" };
+	std::vector<std::string> feature_names= { "C","Hin", "Win", "x", "y", "K", "Hout", "Wout", "n", "padH", "padW", "strideH", "strideW", "dilationH", "dilationW", "direction", "group" };
 	const auto model = fdeep::load_model(argv[1]);
 
 	// Sample input:
-	const std::vector<float> input = {1.0,3.0,3.0,0.0,0.0,1.0,3.321928094887362,3.321928094887362,1.584962500721156,1.0,1.0,0.0,0.0,0.0,0.0,0.0001};
+	const std::vector<float> input = {1.0,3.0,3.0,0.0,0.0,1.0,3.321928094887362,3.321928094887362,1.584962500721156,1.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0001};
 	const fdeep::shared_float_vec sinput(fplus::make_shared_ref<fdeep::float_vec>(std::move(input)));
 
 	const auto result = model.predict_class({
